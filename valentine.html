@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Love For You 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff0844,#ffb199);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+#box{
+background:white;
+width:90%;
+max-width:400px;
+border-radius:25px;
+padding:20px;
+text-align:center;
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+h1,h2{color:#ff0844;}
+
+button{
+padding:10px 22px;
+border:none;
+border-radius:20px;
+background:linear-gradient(45deg,#ff0844,#ff4d6d);
+color:white;
+font-size:15px;
+cursor:pointer;
+margin:8px;
+}
+
+.hidden{display:none;}
+
+img{
+width:100%;
+border-radius:20px;
+margin:10px 0;
+box-shadow:0 8px 15px rgba(0,0,0,0.3);
+}
+
+#hearts{
+height:180px;
+background:#ffe6eb;
+border-radius:15px;
+position:relative;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+font-size:24px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="box">
+
+<!-- Start -->
+<div id="start">
+<h1>💖 My Valentine 💖</h1>
+
+<img src="YOUR_IMAGE_HERE">
+
+<p>Hi Jashan 😘<br>
+This is only for you 💕</p>
+
+<p>From your laddo 🍬❤️</p>
+
+<button onclick="start()">Start ▶️</button>
+</div>
+
+<!-- Level -->
+<div id="level" class="hidden">
+
+<h2>Collect 5 Hearts ❤️</h2>
+
+<div id="hearts"></div>
+
+<p>Score: <span id="score">0</span>/5</p>
+
+</div>
+
+<!-- End -->
+<div id="end" class="hidden">
+
+<h1>💞 I Love You 💞</h1>
+
+<p>You are my forever 😘❤️</p>
+
+<p>Happy Valentine's Day 💝</p>
+
+<p>— Your Laddo 🍬</p>
+
+</div>
+
+</div>
+
+<script>
+
+let count=0;
+
+function start(){
+document.getElementById("start").classList.add("hidden");
+document.getElementById("level").classList.remove("hidden");
+makeHearts();
+}
+
+function makeHearts(){
+
+let area=document.getElementById("hearts");
+
+let inter=setInterval(()=>{
+
+if(count>=5){
+clearInterval(inter);
+finish();
+return;
+}
+
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="❤️";
+
+h.style.left=Math.random()*150+"px";
+h.style.top=Math.random()*130+"px";
+
+h.onclick=function(){
+count++;
+document.getElementById("score").innerText=count;
+this.remove();
+}
+
+area.appendChild(h);
+
+setTimeout(()=>{h.remove()},2000);
+
+},700);
+}
+
+function finish(){
+document.getElementById("level").classList.add("hidden");
+document.getElementById("end").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
